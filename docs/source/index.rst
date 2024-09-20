@@ -12,6 +12,7 @@ Contents
 
 .. toctree::
 
+   schedule
    resources
    spec
    schematic
