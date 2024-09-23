@@ -15,8 +15,8 @@ Contents
    schedule
    resources
    spec
+   architecture
    schematic
-   digitaliface
    simulation
    testbenches
    layout
