@@ -1,16 +1,21 @@
 Simulation
 ===========
 
-Each f
-digital block can be abstracted in the ngsimulation unsing a subcircuit, which instantiates a 
-device using a behevioral model elaborated using ``verilator``. 
+Simulations of analog circuits in open source usually incorporate simulators like ngspice or Xyce in order 
+as a simulation engine. Comparing booth simulators it can be easily stated that ngspice has better support 
+for so called mixed mode simulation mainly thanks to XSPICE module developed at Georgia Tech in 90' 
+`XSPICE documentation <https://ngspice.sourceforge.io/devdocs.html>`_.
+
+Each digital block can be abstracted in the ngspice simulation using a subcircuit, which instantiates a 
+device using a behavioral model elaborated using ``verilator`` and loaded into simulator during the runtime as a shared 
+library ``top.so``.
 
 .. code-block:: spice
 
   .subckt digital_block ain1 ain2 ain3 aout1 aout2
 
-  acomp [ainp1 ainp2 ainp3] [inp1 inp2 inp3] comparator
-  .model comparator adc_bridge in_low=0.2 in_high=1.0
+  acomp [ainp1 ainp2 ainp3] [inp1 inp2 inp3] adc
+  .model adc adc_bridge in_low=0.2 in_high=1.0
 
   adut [inp1 inp2 inp3] [out1 out2] null dut
   .model dut d_cosim simulation="./top.so"
@@ -20,10 +25,10 @@ device using a behevioral model elaborated using ``verilator``.
 
   .ends 
 
-The ADC and DAC bridges have to bi used in order to cross between tha domains.
+The ADC and DAC bridges have to be used in order to cross between the domains.
 
-The digital module can be alaborated using either Verilator (recommended) or Iverilog.
-After a successful validation of a adigital module one can execute the following command in order to 
+The digital module can be elaborated using either Verilator (recommended) or Iverilog.
+After a successful validation of a digital module one can execute the following command in order to 
 prepare a shared library, which can be used during the ngspice simulation. 
 
 .. code-block:: bash
@@ -71,8 +76,11 @@ during the simulation. It can be made by calling the following:
   
   ngspice vlnggen control.v 
 
-The following image shows  a complete schematic which instantiates SPI module and generates appropiate signals in 
-order to drive the digital module inputs. 
+The next step involves a xschem symbol creation which references respective inputs and outputs. Since the digital module 
+drives the transmission gate transistors the load we apply has a capacitive character.  
+
+The following image shows  a complete schematic which instantiates SPI module and generates stimuli signals in 
+order to drive the digital module inputs. :which
 
 .. image:: _static/spitest_sch.png
   :width: 800
