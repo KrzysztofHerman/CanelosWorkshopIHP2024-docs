@@ -247,8 +247,8 @@ The charge injection was evaluated using the following setup:
   set color2=red
   set color3=blue
   set color4=green
-  hardcopy cinject1.svg v_out  title 'Output voltage' xlabel 'time' ylabel 'voltage'
-  hardcopy cinject2.svg en_p   title 'Control signal' xlabel 'time' ylabel 'voltage'
+  hardcopy cinject1.svg v_out  title "Output voltage" xlabel "time" ylabel "voltage"
+  hardcopy cinject2.svg en_p   title "Control signal" xlabel "time" ylabel "voltage"
   .endc
 
 The output signals are shown below:

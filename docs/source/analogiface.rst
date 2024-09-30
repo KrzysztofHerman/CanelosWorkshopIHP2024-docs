@@ -1,6 +1,9 @@
 Analog Interface
 -------------------
 
+Trensmission gate and multiplexer cicuits
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The analog part cosist of eight trasmission gates isolated by a dedicated guard ring,
 what should improve isolation between channes. The basic schematic of a trasmission gate 
 is shown below
@@ -19,7 +22,7 @@ module of the gate and symbol for multiplexer were used in order to abstract the
 
 
 Design Steps
--------------
+^^^^^^^^^^^^^
 
 The principal parameter o the analog switch is it's on-state resistance, which limits the maximum current of the device. 
 Assuming the maximum voltage drop of :math:`\Delta V` @ :math:`I_{max}` load current one can calculate the respective resistance
@@ -40,8 +43,20 @@ on state resistance. See te following figure:
 
 For the MOSFET transistor the static  channel resistance can be calculated as  :math:`R_{DSON} = \frac{V_{DS}}{I_{DS}}`.
 So in order to calculate the transistor size we have to calculete the device current, in this case :math:`I_{DS} = \frac{V_{DS}}{R_{ON}}`
-:math:`I_{DS} = \frac{1.2}{12} = 0.1 mA`.  One single device of a unit width of 1 um  and length of 0.13 um can handle approx 400 uA of current so in order to get 
-the 100 mA we have to increase th width 250 times. Since the allowed value of a unit finger width is 10 um we have to create  multifinger device by applying ng=25. 
+:math:`I_{DS} = \frac{1.2}{12} = 0.1 mA`.  One single device of a unit width of 1 um  and length of 0.13 um can handle approx 400 uA of current (see figure)
+
+.. image:: _static/mos_out1.png
+  :width: 600
+  :alt: Alternative text
+
+so in order to get the 100 mA we have to increase th width 250 times. Since the allowed value of a unit finger width is 10 um we have to create  multifinger device by applying ng=25. 
+
+
+.. image:: _static/mos_out2.png
+  :width: 600
+  :alt: Alternative text
+
+As it can be observed the value of w=250 um is overestimated so the final width was set to w=200 and ng=20 
 
 
 Sweeping the load curent form 10u to 100 mA one can get the value of the on state resistance shown below:
