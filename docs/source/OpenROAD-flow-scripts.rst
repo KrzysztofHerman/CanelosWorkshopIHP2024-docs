@@ -10,13 +10,22 @@ Usage
 ------
 The orginal ORFS tool provides some example designs, which can be elaborated resulting in core area of the chip. 
 In order to provide full chip design one have to incorporate a padring, which instantiates a specific number of IO 
-cells according to the design specification. 
+cells according to the design specification. Some of the definitions of 
+
+
+
+Abstracting digital macro
+--------------------------
+
+Digital blocks can be syntethized and elaborated up to the gds level using OpenROAD.
+
 
 
 Abstracting analog macro
 ------------------------
 ORFS supports macro instantiation, what enables the user to encapsulate the design and instatiate it at a top level as a
 separate block. In order to do so one have to deliver certain views of the macro and inform ORFS about the macro location. 
-The views are the following: ``verilog``, ``liberty``, ``lef``, ``gds``. 
+The views are the following: ``verilog``, ``liberty``, ``lef``, ``gds`` and should be placed  in the respecive folders 
+under ``design_data`` directory.
 
 In order to instantiate an analog macro a 
